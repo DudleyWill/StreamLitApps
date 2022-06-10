@@ -20,7 +20,7 @@ if 'file_name' not in st.session_state:
 @st.cache(ttl=60, max_entries=20, suppress_st_warning=True, allow_output_mutation=True, show_spinner=False)
 def ProcessData(file):
     column_names = ['VehicleType', 'Color', 'Manufacturer', 'Model', 'ModelYear', 'Fuel']
-    df_gas = pd.read_excel(list_file[1], sheet_name='Gas', header=None, skiprows=1)
+    df_gas = pd.read_excel(file, sheet_name='Gas', header=None, skiprows=1)
     df_diesel = pd.read_excel(file, sheet_name='Diesel', header=None, skiprows=1)
     df_gas.columns = column_names
     df_diesel.columns = column_names
@@ -44,29 +44,30 @@ with st.sidebar:
         "Select Vehicle to investigate",
         ('Bus', 'Cars', 'Jeeps', 'MotorCycles', 'Pickups', 'SUVs', 'Trucks', 'Vans')
     )
+
     if vehicle_option == 'Bus':
-        file = list_file[0]
+        file = 'Bus.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Cars':
-        file = list_file[1]
+        file = 'Cars.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Jeeps':
-        file = list_file[2]
+        file = 'Jeeps.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'MotorCycles':
-        file = list_file[3]
+        file = 'MotorCycles.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Pickups':
-        file = list_file[4]
+        file = 'Pickups.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'SUVs':
-        file = list_file[5]
+        file = 'SUVs.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Trucks':
-        file = list_file[6]
+        file = 'Trucks.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     else:
-        file = list_file[7]
+        file = 'Vans.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     st.success('input file has been loaded')
     # data_load_state = st.text('Loading data...')
