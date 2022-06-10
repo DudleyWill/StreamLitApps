@@ -73,7 +73,7 @@ with st.sidebar:
     # data_load_state = st.text('Loading data...')
     # data_load_state.text("Done! (using st.cache)")
 with header_container:
-    st.title("Welcome! toMy  first streamlit app for visualizing vehicle composition")
+    st.title("Welcome! to my  first streamlit app for visualizing vehicle composition data")
     # st.header("Welcome!")
     # st.subheader("This is a great app")
     st.write("Please select a vehicle type on the left to explore its data")
