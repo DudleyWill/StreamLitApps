@@ -7,7 +7,9 @@ import plotly.graph_objects as go
 import os
 import seaborn as sns
 st.set_page_config(layout="wide")
-os.chdir(r'C:\Users\dudleyW\Downloads\DemandForecast\StreamLit')
+
+# os.chdir(r'C:\Users\dudleyW\Downloads\DemandForecast\StreamLit')
+
 list_file = [f for f in glob.glob('*.xlsx')]
 
 # pd.set_option('precision', 0)
