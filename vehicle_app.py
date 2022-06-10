@@ -73,11 +73,10 @@ with st.sidebar:
     # data_load_state = st.text('Loading data...')
     # data_load_state.text("Done! (using st.cache)")
 with header_container:
-    st.title("My  first streamlit app for visualizing vehicle composition")
-    st.header("Welcome!")
+    st.title("Welcome! toMy  first streamlit app for visualizing vehicle composition")
+    # st.header("Welcome!")
     # st.subheader("This is a great app")
-    st.write("Please select a file from your computer to begin. You can use the list on the side to change vehicle "
-             "type afterwards ")
+    st.write("Please select a vehicle type on the left to explore its data")
 
 with data_container:
     # read sheets and combine into one dataframe with gas and diesel per year
@@ -85,19 +84,21 @@ with data_container:
 
     figd = go.Figure(data=[go.Table(
         header=dict(values=list(['VehicleType', 'Color', 'Manufacturer', 'Model', 'ModelYear']),
+                    line_color='darkslategray',
                     fill_color='blue',
                     align='left'),
         cells=dict(values=[diesel.VehicleType, diesel.Color, diesel.Manufacturer, diesel.Model,diesel.ModelYear],
-                   fill_color='black',
-                   align='left'))
+                   fill_color='white',
+                   align='left', font=dict(color='black')))
     ])
     figg = go.Figure(data=[go.Table(
         header=dict(values=list(['VehicleType', 'Color', 'Manufacturer', 'Model', 'ModelYear']),
+                    line_color='darkslategray',
                     fill_color='blue',
                     align='left'),
         cells=dict(values=[gas.VehicleType, gas.Color, gas.Manufacturer, gas.Model, gas.ModelYear],
-                   fill_color='black',
-                   align='left'))
+                   fill_color='white',
+                   align='left', font=dict(color='black')))
     ])
 
     if st.checkbox('Click to view'):
@@ -114,14 +115,14 @@ with data_container:
 
 with graph_container:
     st.subheader("Vehicle composition based on manufactured year")
-    if st.checkbox('Click reveal'):
+    if st.checkbox('Click to reveal'):
         fig = px.bar(graph_data, x='ModelYear', y='Model', color='Fuel',
                      labels={'ModelYear': '# of Vehicles', 'index': "manufactured year"}
                      )
         st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Vehicle composition based on manufactured year")
-    if st.checkbox('Click to reveal'):
+    if st.checkbox('Click to view graph'):
         col1, col2= st.columns(2)
         with col2:
             values = st.slider('Select vehicle ranking range ', 0, 15, 3)
