@@ -46,28 +46,28 @@ with st.sidebar:
     )
 
     if vehicle_option == 'Bus':
-        file = 'Bus.xlsx'
+        file = 'BelizeApp/Bus.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Cars':
-        file = 'Cars.xlsx'
+        file = 'BelizeApp/Cars.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Jeeps':
-        file = 'Jeeps.xlsx'
+        file = 'BelizeApp/Jeeps.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'MotorCycles':
-        file = 'MotorCycles.xlsx'
+        file = 'BelizeApp/MotorCycles.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Pickups':
-        file = 'Pickups.xlsx'
+        file = 'BelizeApp/Pickups.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'SUVs':
-        file = 'SUVs.xlsx'
+        file = 'BelizeApp/SUVs.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     elif vehicle_option == 'Trucks':
-        file = 'Trucks.xlsx'
+        file = 'BelizeApp/Trucks.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     else:
-        file = 'Vans.xlsx'
+        file = 'BelizeApp/Vans.xlsx'
         graph_data, gas, diesel = ProcessData(file)
     st.success('input file has been loaded')
     # data_load_state = st.text('Loading data...')
