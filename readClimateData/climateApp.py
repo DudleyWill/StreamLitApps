@@ -7,6 +7,11 @@ import glob
 import linecache
 import os
 import plotly.express as px
+import geopandas as gpd
+from shapely.geometry import Point
+from functools import reduce
+from shapely import speedups
+speedups.enabled
 import plotly.graph_objects as go
 import os
 st.set_page_config(layout="wide")
@@ -31,6 +36,18 @@ def ProcessData(file,parish):
     df_melted.drop(columns=['year', 'month'], inplace=True)
     # data_frames.append(melted)
     return df_melted, df_all
+
+def chose_unit(x):
+    if x.rsplit('_', 1)[1] == 'hurs':
+        return '_RH'
+    else:
+        return '_K'
+
+@st.cache(ttl=60, max_entries=20, suppress_st_warning=True, allow_output_mutation=True, show_spinner=False)
+def CSGMData(shp):
+    country_shp = gpd.read_file(shp)
+    return country_shp
+
 
 
 @st.cache
@@ -68,7 +85,13 @@ with st.sidebar:
         if uploaded_file is not None:
             # Can be used wherever a "file-like" object is accepted:
             dataframe = pd.read_csv(uploaded_file)
-            st.write(dataframe)
+
+
+        shp_file = st.file_uploader("select shapefile for country")  # accept_multiple_files=True)
+        if uploaded_file is not None:
+            # Can be used wherever a "file-like" object is accepted:
+            country_shp = gpd.read_file(shp_file)
+
 
     with st.expander("CSV file from World Bank "):
         parish_name = st.text_input('Enter name of parish', 'BelizeCity')
@@ -83,7 +106,8 @@ with st.sidebar:
 
 with csgm_container:
     with st.expander('Processed CSGM data '):
-        st.write('jkjk')
+        st.write(dataframe)
+
 
 
 
